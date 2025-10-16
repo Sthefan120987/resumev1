@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guia Interactiva de Microsoft Office </title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fffaf3;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #f9c46b, #fbd68d);
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3rem;
+      color: #2f2f2f;
+      margin: 0;
+    }
+    nav {
+      background: #f7e7c4;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      color: #444;
+    }
+    nav a:hover {
+      color: #d35400;
+    }
+    section {
+      padding: 2rem;
+      margin: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .word {
+      background: #e6f0ff;
+      border-left: 10px solid #2b579a;
+    }
+    .excel {
+      background: #e8f5e9;
+      border-left: 10px solid #217346;
+    }
+    .powerpoint {
+      background: #fff3e6;
+      border-left: 10px solid #d24726;
+    }
+    h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      margin-top: 0;
+    }
+    button {
+      background: #f9c46b;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #f7b733;
+    }
+    textarea, input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .quiz {
+      margin-top: 20px;
+    }
+    .resultado {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Guía Interactiva de Microsoft </h1>
+  </header>
+
+  <nav>
+    <a href="#word">Word</a>
+    <a href="#excel">Excel</a>
+    <a href="#powerpoint">PowerPoint</a>
+    <a href="#quiz">Quiz</a>
+  </nav>
+
+  <section class="word" id="word">
+    <h2>Microsoft Word</h2>
+    <img src="https://www.vectorlogo.zone/logos/microsoft_word/microsoft_word-icon.svg" alt="Logo Word" width="80">
+    <p>Microsoft Word es un procesador de textos que permite crear documentos como trabajos escolares, informes y cartas. En secundaria, es esencial aprender a dar formato para presentar escritos de manera clara y ordenada.</p>
+    <p><b>Ejercicio interactivo:</b> Escribe un párrafo y usa los botones para darle formato:</p>
+    <textarea id="editorWord" placeholder="Escribe aquí tu texto..."></textarea>
+    <button onclick="document.getElementById('editorWord').style.fontWeight='bold'">Negrita</button>
+    <button onclick="document.getElementById('editorWord').style.fontStyle='italic'">Cursiva</button>
+    <button onclick="document.getElementById('editorWord').style.textDecoration='underline'">Subrayado</button>
+  </section>
+
+  <section class="excel" id="excel">
+    <h2>Microsoft Excel</h2>
+    <img src="https://www.vectorlogo.zone/logos/microsoft_excel/microsoft_excel-icon.svg" alt="Logo Excel" width="80">
+    <p>Microsoft Excel organiza datos en tablas y realiza cálculos automáticos. Es muy útil para notas, horarios o estadísticas. Su potencia está en las fórmulas y gráficas.</p>
+    <p><b>Ejercicio interactivo:</b> Ingresa 3 notas y calcula el promedio:</p>
+    <input type="number" id="nota1" placeholder="Nota 1">
+    <input type="number" id="nota2" placeholder="Nota 2">
+    <input type="number" id="nota3" placeholder="Nota 3">
+    <button onclick="calcularPromedio()">Calcular Promedio</button>
+    <p id="resultadoExcel" class="resultado"></p>
+  </section>
+
+  <section class="powerpoint" id="powerpoint">
+    <h2>Microsoft PowerPoint</h2>
+    <img src="https://cdn.pixabay.com/photo/2021/12/13/06/33/powerpoint-6867647_1280.png" alt="Logo PowerPoint" width="80">
+    <p>Microsoft PowerPoint ayuda a crear presentaciones llamativas con texto, imágenes y animaciones. Es muy útil para exponer temas en clase de forma clara.</p>
+    <p><b>Ejercicio interactivo:</b> Escribe el título de tu primera diapositiva:</p>
+    <input type="text" id="tituloPpt" placeholder="Título de la diapositiva...">
+    <button onclick="mostrarDiapositiva()">Mostrar Diapositiva</button>
+    <p id="resultadoPpt" class="resultado"></p>
+  </section>
+
+  <section class="quiz" id="quiz">
+    <h2>Mini Quiz</h2>
+    <p>1. ¿Qué programa sirve para cálculos con tablas?</p>
+    <input type="text" id="pregunta1" placeholder="Tu respuesta">
+    <p>2. ¿Qué programa se usa para presentaciones?</p>
+    <input type="text" id="pregunta2" placeholder="Tu respuesta">
+    <button onclick="corregirQuiz()">Corregir</button>
+    <p id="resultadoQuiz" class="resultado"></p>
+  </section>
+
+  <script>
+    function calcularPromedio(){
+      let n1 = parseFloat(document.getElementById('nota1').value) || 0;
+      let n2 = parseFloat(document.getElementById('nota2').value) || 0;
+      let n3 = parseFloat(document.getElementById('nota3').value) || 0;
+      let prom = ((n1+n2+n3)/3).toFixed(2);
+      document.getElementById('resultadoExcel').innerText = "El promedio es: " + prom;
+    }
+    function mostrarDiapositiva(){
+      let titulo = document.getElementById('tituloPpt').value;
+      document.getElementById('resultadoPpt').innerText = "Diapositiva: " + titulo;
+    }
+    function corregirQuiz(){
+      let r1 = document.getElementById('pregunta1').value.toLowerCase();
+      let r2 = document.getElementById('pregunta2').value.toLowerCase();
+      let score = 0;
+      if(r1.includes('excel')) score++;
+      if(r2.includes('powerpoint')) score++;
+      document.getElementById('resultadoQuiz').innerText = "Tu puntaje: " + score + "/2";
+    }
+  </script>
+</body>
+</html>
